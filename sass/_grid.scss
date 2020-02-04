@@ -1,0 +1,52 @@
+.grid-container {
+  display: grid;
+  width: calc(100% - 30px);
+  margin: 0 auto;
+  grid-template-columns: repeat(12, 1fr);
+  max-width: 1140px;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+
+  @include media-breakpoint-up(sm) {
+    max-width: 546px;
+  }
+  @include media-breakpoint-up(md) {
+    max-width: 738px;
+  }
+  @include media-breakpoint-up(lg) {
+    max-width: 962px;
+  }
+  @include media-breakpoint-up(xl) {
+    max-width: 1170px;
+  }
+}
+
+.grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+}
+
+[class*="col-"] {
+  grid-column: span 12;
+}
+
+// Col Default Sizes
+@each $breakpoint-value in $breakpoint-values {
+  .col-#{$breakpoint-value} {
+    grid-column: span $breakpoint-value;
+  }
+}
+
+// Col breakpoint sizes
+@each $breakpoint in map-keys($breakpoints) {
+  @each $breakpoint-value in $breakpoint-values {
+    @include media-breakpoint-up($breakpoint) {
+      .col-#{$breakpoint}-#{$breakpoint-value} {
+        grid-column: span $breakpoint-value;
+      }
+    }
+  }
+}

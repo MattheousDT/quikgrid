@@ -1,83 +1,8 @@
-$breakpoints: (
-  "sm": (
-    min-width: 576px
-  ),
-  "md": (
-    min-width: 768px
-  ),
-  "lg": (
-    min-width: 992px
-  ),
-  "xl": (
-    min-width: 1200px
-  )
-) !default;
-
-$breakpoint-values: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12) !default;
-
-@mixin media-breakpoint-up($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media #{inspect(map-get($breakpoints, $breakpoint))} {
-      @content;
-    }
-  } @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Available breakpoints are: #{map-keys($breakpoints)}.";
-  }
-}
+@import "./variables";
+@import "./functions";
+@import "./grid";
+@import "./utilities";
 
 body {
   margin: 0;
-}
-
-.grid-container {
-  display: grid;
-  width: calc(100% - 30px);
-  margin: 0 auto;
-  grid-template-columns: repeat(12, 1fr);
-  max-width: 1140px;
-  grid-column-gap: 15px;
-  grid-row-gap: 1em;
-
-  @include media-breakpoint-up(sm) {
-    max-width: 546px;
-  }
-  @include media-breakpoint-up(md) {
-    max-width: 738px;
-  }
-  @include media-breakpoint-up(lg) {
-    max-width: 962px;
-  }
-  @include media-breakpoint-up(xl) {
-    max-width: 1170px;
-  }
-}
-
-.grid {
-  display: grid;
-  width: 100%;
-  padding: 0 15px;
-}
-
-[class*="col-"] {
-  grid-column: span 12;
-  background: grey;
-}
-
-// Col Default Sizes
-@each $breakpoint-value in $breakpoint-values {
-  .col-#{$breakpoint-value} {
-    grid-column: span $breakpoint-value;
-  }
-}
-
-// Col breakpoint sizes
-@each $breakpoint in map-keys($breakpoints) {
-  @each $breakpoint-value in $breakpoint-values {
-    @include media-breakpoint-up($breakpoint) {
-      .col-#{$breakpoint}-#{$breakpoint-value} {
-        grid-column: span $breakpoint-value;
-      }
-    }
-  }
 }

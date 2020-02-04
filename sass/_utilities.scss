@@ -1,0 +1,31 @@
+.fluid {
+  max-width: 100%;
+}
+
+.full {
+  width: 100%;
+}
+
+.half {
+  width: 50%;
+}
+
+.third {
+  width: 33.333%;
+}
+
+.quarter {
+  width: 25%;
+}
+
+$justification-types: justify-self, align-self, justify-items, align-items,
+  place-self, place-items;
+$alignment-types: start, end, center, stretch;
+
+@each $a in $justification-types {
+  @each $b in $alignment-types {
+    .#{$a}-#{$b} {
+      #{$a}: #{$b};
+    }
+  }
+}

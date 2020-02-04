@@ -8,10 +8,11 @@
   "private": false,
   "scripts": {
     "clean": "rimraf css",
-    "compile": "node-sass --output-style=expanded --source-map=true sass/index.scss css/quikgrid.css",
+    "compile": "node-sass --output-style=expanded sass/index.scss css/quikgrid.css",
     "prefix": "postcss css/quikgrid.css --use=autoprefixer --map=false --output=css/quikgrid.css",
-    "minify": "cleancss --level=1 --source-map --source-map-inline-sources --output css/quikgrid.min.css css/quikgrid.css",
-    "dev": "yarn compile -- --watch"
+    "minify": "cleancss --level=1 --output css/quikgrid.min.css css/quikgrid.css",
+    "dev": "yarn compile --watch --source-map=true",
+    "prod": "yarn clean && yarn compile && yarn prefix && yarn minify"
   },
   "browserslist": [
     "last 2 versions"
