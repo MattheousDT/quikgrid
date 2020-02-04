@@ -1,6 +1,6 @@
 {
   "name": "quikgrid",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Painlessly simple CSS grids",
   "main": "index.js",
   "author": "Matthew Watt",
