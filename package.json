@@ -1,0 +1,25 @@
+{
+  "name": "quikgrid",
+  "version": "1.0.0",
+  "description": "Painlessly simple CSS grids",
+  "main": "index.js",
+  "author": "Matthew Watt",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "clean": "rimraf css",
+    "compile": "node-sass --output-style=expanded --source-map=true sass/index.scss css/quikgrid.css",
+    "prefix": "postcss css/quikgrid.css --use=autoprefixer --map=false --output=css/quikgrid.css",
+    "minify": "cleancss --level=1 --source-map --source-map-inline-sources --output css/quikgrid.min.css css/quikgrid.css",
+    "dev": "yarn compile -- --watch"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^9.7.4",
+    "clean-css-cli": "^4.3.0",
+    "node-sass": "^4.13.1",
+    "postcss-cli": "^7.1.0"
+  }
+}

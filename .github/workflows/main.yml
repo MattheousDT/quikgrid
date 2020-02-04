@@ -1,0 +1,38 @@
+name: Quikgrid CI/CD
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  ci:
+    name: Continuous Integration
+    runs-on: ubuntu-latest
+    container:
+      image: node
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+      - name: Clean
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: clean
+      - name: Compile SASS
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: compile
+      - name: Add Vendor Prefixes
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: prefix
+      - name: Minify
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: minify
